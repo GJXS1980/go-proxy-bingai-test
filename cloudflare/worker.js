@@ -70,6 +70,13 @@ const getRandomIP = () => {
   return randomIP;
 };
 
+const home = async () => {
+  const res = await fetch('https://raw.githubusercontent.com/adams549659584/go-proxy-bingai/master/cloudflare/index.html');
+  const newRes = new Response(res.body, res);
+  newRes.headers.set('content-type', 'text/html; charset=utf-8');
+  return newRes;
+};
+
 export default {
   /**
    * fetch
