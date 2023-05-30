@@ -87,6 +87,9 @@ export default {
    */
   async fetch(request, env, ctx) {
     const currentUrl = new URL(request.url);
+    if (currentUrl.pathname === '/') {
+      return home();
+    }    
     const targetUrl = new URL(SYDNEY_ORIGIN + currentUrl.pathname + currentUrl.search);
 
     const newHeaders = new Headers();
@@ -114,7 +117,7 @@ export default {
     }
 
     // newHeaders.forEach((value, key) => console.log(`${key} : ${value}`));
-    const newReq = new Request(targetUrl, {
+     const newReq = new Request(targetUrl, {
       method: request.method,
       headers: newHeaders,
       body: request.body,
