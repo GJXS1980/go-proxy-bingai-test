@@ -10,17 +10,19 @@ try {
   };
   const xhrOpen = window.XMLHttpRequest.prototype.open;
   window.XMLHttpRequest.prototype.open = function (method, url) {
+    const that = this;
     if (logPathReg.test(url)) {
-      this.isLog = true;
+      that.isLog = true;
     }
-    return xhrOpen.call(this, method, url);
+    return xhrOpen.apply(that, [method, url]);
   };
   const xhrSend = window.XMLHttpRequest.prototype.send;
-  window.XMLHttpRequest.prototype.send = function (body) {
-    if (this.isLog) {
-      return this.abort();
+  window.XMLHttpRequest.prototype.send = function (...args) {
+    const that = this;
+    if (that.isLog) {
+      return that.abort();
     }
-    return xhrSend.call(this, body);
+    return xhrSend.apply(that, args);
   };
   // const OriginalImage = Image;
   // Image = function () {
@@ -36,7 +38,7 @@ try {
   // };
 } catch (error) {
   console.error(error);
-};
+}
 _G = {
   Region: 'US',
   Lang: 'zh-CN',
