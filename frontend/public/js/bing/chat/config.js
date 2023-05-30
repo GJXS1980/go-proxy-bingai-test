@@ -141,7 +141,7 @@ _w['_sydConvConfig'] = {
   isAccountLinkedWithActiveAAD: false,
   enableThreadsAADMSASwitch: true,
   enableMaxTurnsPerConversation: true,
-  enableMaxTurnsFromBackend: false,
+  enableMaxTurnsFromBackend: true,
   maxTurnsPerConversation: 20,
   maxTurnsPerConversationMuidUser: 5,
   maxMessageLength: 4000,
